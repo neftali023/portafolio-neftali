@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>Portafolio de Neftali</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#edf1ed;
+    --bg-2:#e2e9e2;
+    --surface:#ffffff;
+    --surface-2:#f6f8f6;
+    --ink:#131e1a;
+    --ink-2:#3d4f47;
+    --ink-3:#66796f;
+    --line:#cfd9d1;
+    --line-strong:#aebfb2;
+    --accent:#0c7355;
+    --accent-ink:#ffffff;
+    --accent-soft:#d9ece3;
+    --amber:#b45309;
+    --amber-soft:#fdeeda;
+    --red:#b3261e;
+    --red-soft:#fbe7e5;
+    --blue:#1d4ed8;
+    --blue-soft:#e2e9fd;
+    --radius:14px;
+    --shadow:0 18px 40px rgba(19,30,26,.10);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0d1411;
+      --bg-2:#0a100d;
+      --surface:#16211c;
+      --surface-2:#1a2821;
+      --ink:#eef4ef;
+      --ink-2:#c2d2c7;
+      --ink-3:#8fa398;
+      --line:#2a3a32;
+      --line-strong:#3d5347;
+      --accent:#2fbd8f;
+      --accent-ink:#08130e;
+      --accent-soft:#17382c;
+      --amber:#f0a04b;
+      --amber-soft:#3a2a14;
+      --red:#ff8a80;
+      --red-soft:#3d1e1b;
+      --blue:#8fb0ff;
+      --blue-soft:#1c2a52;
+      --shadow:0 18px 40px rgba(0,0,0,.45);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Libre Franklin", system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:"IBM Plex Mono", ui-monospace, monospace}
+  a{color:var(--accent)}
+  button, [role="button"], select, summary, input:not([type="checkbox"],[type="radio"]){min-height:2.25rem}
+  :focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:6px}
+
+  .wrap{max-width:1120px; margin:0 auto; padding:0 20px}
+  @media (min-width:760px){ .wrap{padding:0 32px} }
+
+  /* ---------- Nav ---------- */
+  .topnav{
+    position:sticky; top:0; z-index:40;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topnav-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding-top:10px; padding-bottom:10px}
+  .brand{font-weight:800; letter-spacing:-.02em; font-size:1rem; color:var(--ink); text-decoration:none; white-space:nowrap}
+  .brand span{color:var(--accent)}
+  .navlinks{display:flex; gap:4px; flex-wrap:wrap; justify-content:flex-end}
+  .navlinks a{
+    color:var(--ink-2); text-decoration:none; font-size:.88rem; font-weight:600;
+    padding:9px 10px; border-radius:8px; min-height:36px; display:inline-flex; align-items:center;
+  }
+  .navlinks a:hover{background:var(--surface); color:var(--ink)}
+  @media (max-width:640px){
+    .topnav{position:static}
+    .topnav-inner{flex-direction:column; align-items:flex-start; gap:2px}
+    .navlinks{justify-content:flex-start}
+    .navlinks a{padding:7px 8px; font-size:.84rem}
+    .brand{font-size:.95rem; padding:4px 8px 4px 0}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{padding:52px 0 40px; border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(700px 320px at 85% -60px, var(--accent-soft), transparent 65%),
+      linear-gradient(var(--bg), var(--bg));
+  }
+  .hero-grid{display:grid; gap:36px}
+  @media (min-width:920px){ .hero-grid{grid-template-columns:1.05fr .95fr; align-items:start} }
+  .hero-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:"IBM Plex Mono", monospace; font-size:.78rem; font-weight:600;
+    letter-spacing:.04em; text-transform:uppercase;
+    background:var(--surface); border:1px solid var(--line-strong); color:var(--ink-2);
+    padding:7px 12px; border-radius:999px;
+  }
+  .hero-tag i{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block; flex:none}
+  h1{
+    font-size:clamp(2.3rem, 6vw, 3.6rem); line-height:1.02; letter-spacing:-.035em;
+    font-weight:900; margin:18px 0 6px;
+  }
+  h1 .name-accent{color:var(--accent)}
+  .hero-role{font-size:clamp(1.15rem,2.6vw,1.45rem); font-weight:700; letter-spacing:-.015em; color:var(--ink); margin:0 0 14px}
+  .hero-lede{font-size:1.05rem; color:var(--ink-2); max-width:56ch; margin:0 0 22px}
+  .hero-lede strong{color:var(--ink)}
+  .hero-ctas{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:26px}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    min-height:44px; padding:11px 18px; border-radius:10px;
+    font-weight:700; font-size:.95rem; text-decoration:none; cursor:pointer; border:1px solid transparent;
+  }
+  .btn-primary{background:var(--accent); color:var(--accent-ink)}
+  .btn-primary:hover{filter:brightness(1.07)}
+  .btn-ghost{background:var(--surface); color:var(--ink); border-color:var(--line-strong)}
+  .btn-ghost:hover{border-color:var(--accent); color:var(--accent)}
+  .hero-facts{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+  @media (min-width:520px){ .hero-facts{grid-template-columns:repeat(4,1fr)} }
+  .fact{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:12px 13px}
+  .fact b{display:block; font-size:1.02rem; letter-spacing:-.01em}
+  .fact span{font-size:.8rem; color:var(--ink-3); line-height:1.35; display:block; margin-top:2px}
+
+  /* Console mock */
+  .console{
+    background:var(--surface); border:1px solid var(--line-strong); border-radius:16px;
+    box-shadow:var(--shadow); overflow:hidden;
+  }
+  .console-bar{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:11px 14px; border-bottom:1px solid var(--line); background:var(--surface-2);
+  }
+  .console-bar .dots{display:flex; gap:6px}
+  .console-bar .dots i{width:10px;height:10px;border-radius:50%;background:var(--line-strong);display:block}
+  .console-bar .dots i:first-child{background:var(--accent)}
+  .console-title{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--ink-2); font-weight:600}
+  .live-pill{font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:600; color:var(--accent);
+    background:var(--accent-soft); padding:4px 9px; border-radius:999px; white-space:nowrap}
+  .console-body{padding:16px}
+  .agent-row{display:flex; align-items:center; gap:12px; padding-bottom:14px; border-bottom:1px dashed var(--line); margin-bottom:14px}
+  .avatar{
+    width:46px;height:46px;border-radius:12px; flex:none;
+    background:var(--accent); color:var(--accent-ink);
+    display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1rem;
+  }
+  .agent-row h3{margin:0; font-size:1rem; letter-spacing:-.01em}
+  .agent-row p{margin:2px 0 0; font-size:.84rem; color:var(--ink-3)}
+  .call-state{margin-left:auto; text-align:right}
+  .call-state b{display:block; font-family:"IBM Plex Mono",monospace; font-size:1.05rem}
+  .call-state span{font-size:.75rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:.05em}
+  .console-actions{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:14px}
+  .console-actions span{
+    text-align:center; font-size:.78rem; font-weight:700; padding:9px 4px; border-radius:9px;
+    background:var(--surface-2); border:1px solid var(--line); color:var(--ink-2);
+  }
+  .console-actions span.hot{background:var(--red-soft); color:var(--red); border-color:transparent}
+  .ai-box{background:var(--accent-soft); border-radius:12px; padding:13px 14px}
+  .ai-box .ai-head{display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:6px}
+  .ai-box .ai-head b{font-size:.86rem}
+  .ai-score{font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:.84rem; background:var(--surface); padding:3px 9px; border-radius:999px; color:var(--accent)}
+  .ai-box p{margin:0; font-size:.87rem; color:var(--ink-2)}
+  .wave{display:flex; align-items:flex-end; gap:3px; height:30px; margin-top:12px}
+  .wave i{flex:1; background:var(--accent); border-radius:3px 3px 0 0; opacity:.85; display:block}
+
+  /* ---------- Sections ---------- */
+  section{padding:54px 0}
+  section + section{border-top:1px solid var(--line)}
+  .sec-head{max-width:720px; margin-bottom:28px}
+  .sec-head h2{font-size:clamp(1.6rem,3.6vw,2.15rem); letter-spacing:-.03em; line-height:1.12; margin:0 0 10px; font-weight:800}
+  .sec-head p{margin:0; color:var(--ink-2); font-size:1rem}
+
+  /* Problem */
+  .pain-grid{display:grid; gap:12px}
+  @media (min-width:760px){ .pain-grid{grid-template-columns:1fr 1fr} }
+  .pain{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:18px;
+    display:flex; gap:14px;
+  }
+  .pain-num{
+    font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:.85rem; flex:none;
+    width:34px;height:34px; border-radius:9px; display:flex; align-items:center; justify-content:center;
+    background:var(--red-soft); color:var(--red);
+  }
+  .pain h3{margin:0 0 4px; font-size:1rem; letter-spacing:-.01em}
+  .pain p{margin:0; font-size:.92rem; color:var(--ink-2)}
+  .pain-answer{
+    margin-top:16px; background:var(--ink); color:#eef4ef; border-radius:var(--radius); padding:20px;
+  }
+  @media (prefers-color-scheme: dark){ .pain-answer{background:var(--surface-2); border:1px solid var(--line-strong)} }
+  .pain-answer h3{margin:0 0 6px; font-size:1.05rem}
+  .pain-answer p{margin:0; color:#c9d6cd; font-size:.95rem; max-width:75ch}
+  @media (prefers-color-scheme: dark){ .pain-answer p{color:var(--ink-2)} }
+  .pain-answer strong{color:#fff}
+  @media (prefers-color-scheme: dark){ .pain-answer strong{color:var(--ink)} }
+
+  /* Dashboard demo */
+  .dash-shell{background:var(--surface); border:1px solid var(--line-strong); border-radius:18px; box-shadow:var(--shadow); overflow:hidden}
+  .dash-toolbar{
+    display:flex; flex-wrap:wrap; align-items:center; gap:12px; justify-content:space-between;
+    padding:14px 16px; border-bottom:1px solid var(--line); background:var(--surface-2);
+  }
+  .dash-toolbar .t-left{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+  .dash-toolbar h3{margin:0; font-size:1rem; letter-spacing:-.01em}
+  .mode-badge{font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:600; background:var(--amber-soft); color:var(--amber); padding:4px 9px; border-radius:999px}
+  .seg{display:inline-flex; background:var(--surface); border:1px solid var(--line-strong); border-radius:11px; padding:3px; gap:3px}
+  .seg button{
+    border:0; background:transparent; color:var(--ink-2); font:inherit; font-weight:700; font-size:.9rem;
+    padding:8px 16px; border-radius:8px; cursor:pointer; min-height:38px;
+  }
+  .seg button[aria-pressed="true"]{background:var(--accent); color:var(--accent-ink)}
+  .dash-body{padding:18px 16px 20px}
+  .kpis{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:18px}
+  @media (min-width:820px){ .kpis{grid-template-columns:repeat(4,1fr)} }
+  .kpi{border:1px solid var(--line); border-radius:12px; padding:13px 14px; background:var(--surface-2)}
+  .kpi span{display:block; font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-3)}
+  .kpi b{display:block; font-size:1.55rem; letter-spacing:-.02em; margin-top:3px; font-family:"IBM Plex Mono",monospace; font-weight:600}
+  .kpi small{font-size:.8rem; font-weight:600}
+  .up{color:var(--accent)} .down{color:var(--red)}
+  .dash-cols{display:grid; gap:18px}
+  @media (min-width:900px){ .dash-cols{grid-template-columns:1.15fr .85fr} }
+  .panel h4{margin:0 0 12px; font-size:.92rem; letter-spacing:-.01em}
+  .panel h4 span{color:var(--ink-3); font-weight:500; font-size:.82rem}
+  .bar-row{display:grid; grid-template-columns:122px 1fr 44px; align-items:center; gap:10px; margin-bottom:10px; font-size:.83rem}
+  .bar-row .lbl{color:var(--ink-2); font-weight:600; line-height:1.25}
+  .bar-track{height:10px; background:var(--bg-2); border-radius:99px; overflow:hidden}
+  @media (prefers-color-scheme: dark){ .bar-track{background:#0d1712} }
+  .bar-fill{height:100%; border-radius:99px; background:var(--accent); transition:width .5s ease}
+  .bar-row .val{font-family:"IBM Plex Mono",monospace; font-weight:600; text-align:right}
+  .agent-table{width:100%; border-collapse:collapse; font-size:.88rem}
+  .agent-table th{
+    text-align:left; font-size:.74rem; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-3);
+    padding:0 8px 8px 0; border-bottom:1px solid var(--line);
+  }
+  .agent-table td{padding:9px 8px 9px 0; border-bottom:1px solid var(--line); vertical-align:middle}
+  .agent-table tr:last-child td{border-bottom:0}
+  .status{display:inline-flex; align-items:center; gap:6px; font-size:.8rem; font-weight:700}
+  .status i{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
+  .st-call i{background:var(--accent)} .st-call{color:var(--accent)}
+  .st-wrap i{background:var(--amber)} .st-wrap{color:var(--amber)}
+  .st-pause i{background:var(--ink-3)} .st-pause{color:var(--ink-3)}
+  .ai-insight{margin-top:18px; background:var(--accent-soft); border-radius:12px; padding:15px 16px; display:flex; gap:12px}
+  .ai-insight .spark{
+    flex:none; width:36px;height:36px;border-radius:10px; background:var(--accent); color:var(--accent-ink);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .ai-insight h4{margin:0 0 3px; font-size:.92rem}
+  .ai-insight p{margin:0; font-size:.9rem; color:var(--ink-2)}
+  .dash-note{margin:12px 2px 0; font-size:.83rem; color:var(--ink-3)}
+
+  /* Services */
+  .svc-list{display:grid; gap:12px}
+  @media (min-width:760px){ .svc-list{grid-template-columns:1fr 1fr} }
+  .svc{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:20px}
+  .svc h3{margin:0 0 6px; font-size:1.05rem; letter-spacing:-.015em; display:flex; align-items:baseline; gap:10px}
+  .svc h3 .n{font-family:"IBM Plex Mono",monospace; font-size:.8rem; color:var(--accent); font-weight:600}
+  .svc p{margin:0; font-size:.93rem; color:var(--ink-2)}
+  .svc ul{margin:10px 0 0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:6px}
+  .svc li{font-size:.78rem; font-weight:600; background:var(--surface-2); border:1px solid var(--line); padding:5px 9px; border-radius:999px; color:var(--ink-2)}
+
+  /* Architecture */
+  .arch{display:grid; gap:12px}
+  @media (min-width:900px){ .arch{grid-template-columns:repeat(4,1fr)} }
+  .layer{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:18px; position:relative}
+  .layer .tag{font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--accent)}
+  .layer h3{margin:7px 0 6px; font-size:1rem; letter-spacing:-.01em}
+  .layer p{margin:0; font-size:.88rem; color:var(--ink-2)}
+  .layer.base{border-color:var(--accent); background:var(--accent-soft)}
+  .arch-note{margin-top:14px; font-size:.93rem; color:var(--ink-2); max-width:80ch}
+  .arch-note strong{color:var(--ink)}
+  .deploy{display:grid; gap:12px; margin-top:18px}
+  @media (min-width:760px){ .deploy{grid-template-columns:1fr 1fr 1fr} }
+  .deploy div{border:1px dashed var(--line-strong); border-radius:12px; padding:15px 16px; background:var(--surface-2)}
+  .deploy b{display:block; margin-bottom:3px; font-size:.95rem}
+  .deploy p{margin:0; font-size:.87rem; color:var(--ink-2)}
+
+  /* Process */
+  .phases{display:grid; gap:0; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--surface)}
+  .phase{display:grid; gap:4px; padding:18px 20px}
+  .phase + .phase{border-top:1px solid var(--line)}
+  @media (min-width:820px){
+    .phase{grid-template-columns:150px 1fr auto; gap:18px; align-items:start}
+  }
+  .phase .p-tag{font-family:"IBM Plex Mono",monospace; font-size:.8rem; font-weight:600; color:var(--accent)}
+  .phase h3{margin:0 0 4px; font-size:1rem}
+  .phase p{margin:0; font-size:.92rem; color:var(--ink-2); max-width:62ch}
+  .phase .state{font-size:.76rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding:5px 10px; border-radius:999px; white-space:nowrap; justify-self:start}
+  @media (min-width:820px){ .phase .state{justify-self:end} }
+  .state.done{background:var(--accent-soft); color:var(--accent)}
+  .state.next{background:var(--amber-soft); color:var(--amber)}
+  .state.plan{background:var(--blue-soft); color:var(--blue)}
+
+  /* Skills + About */
+  .two-col{display:grid; gap:28px}
+  @media (min-width:900px){ .two-col{grid-template-columns:1fr 1fr} }
+  .skill-group{margin-bottom:18px}
+  .skill-group h3{font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-3); margin:0 0 9px}
+  .chips{display:flex; flex-wrap:wrap; gap:7px}
+  .chips span{background:var(--surface); border:1px solid var(--line-strong); border-radius:999px; padding:7px 12px; font-size:.86rem; font-weight:600}
+  .about-card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:22px}
+  .about-card p{margin:0 0 12px; color:var(--ink-2); font-size:.97rem}
+  .about-card p:last-child{margin-bottom:0}
+  .about-card strong{color:var(--ink)}
+
+  /* Licenses */
+  .lic{background:var(--surface); border:1px solid var(--line-strong); border-radius:var(--radius); padding:22px}
+  .lic h2{margin:0 0 10px; font-size:1.3rem; letter-spacing:-.02em}
+  .lic p{color:var(--ink-2); font-size:.95rem; margin:0 0 12px; max-width:82ch}
+  .lic-grid{display:grid; gap:10px; margin-top:16px}
+  @media (min-width:760px){ .lic-grid{grid-template-columns:1fr 1fr} }
+  .lic-item{border:1px solid var(--line); border-radius:12px; padding:15px 16px; background:var(--surface-2)}
+  .lic-item b{display:block; font-size:.98rem; margin-bottom:2px}
+  .lic-item .mono{font-size:.8rem; color:var(--accent); font-weight:600}
+  .lic-item p{margin:6px 0 0; font-size:.88rem}
+
+  /* Closing */
+  .closing{text-align:left; background:var(--ink); color:#eef4ef; border-radius:18px; padding:30px 26px}
+  @media (prefers-color-scheme: dark){ .closing{background:var(--surface-2); border:1px solid var(--line-strong)} }
+  .closing h2{margin:0 0 8px; font-size:clamp(1.5rem,3.4vw,2rem); letter-spacing:-.025em}
+  .closing p{margin:0; color:#c9d6cd; max-width:68ch}
+  @media (prefers-color-scheme: dark){ .closing p{color:var(--ink-2)} }
+
+  footer{padding:26px 0 40px; color:var(--ink-3); font-size:.85rem}
+  footer .wrap{display:flex; flex-wrap:wrap; gap:8px 20px; justify-content:space-between}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .bar-fill{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Secciones del portafolio">
+  <div class="wrap topnav-inner">
+    <a class="brand" href="#inicio">Neftali <span>Hernandez Lozano</span></a>
+    <div class="navlinks">
+      <a href="#problema">El problema</a>
+      <a href="#caso">Caso: demo</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#arquitectura">Arquitectura</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#licencias">Licencias</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="hero-tag"><i></i> Disponible para implementación y modernización</span>
+      <h1>Neftali<br><span class="name-accent">Hernandez Lozano</span></h1>
+      <p class="hero-role">Modernización y adaptación de VICIdial y Asterisk para centros de contacto</p>
+      <p class="hero-lede">
+        Trabajo sobre software libre que las empresas <strong>ya tienen en producción</strong>: analizo su
+        VICIdial o su Asterisk puro, modernizo la interfaz de agente y de administración, construyo
+        dashboards claros para supervisión, integro IA sobre las grabaciones y conecto la operación
+        con su CRM. Si el proyecto se concreta, no se queda en demo: es
+        <strong>implementación, adaptación y configuración reales</strong>, sobre una base común que se
+        parametriza según los requerimientos de cada operación.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#caso">Ver la demo modernizada</a>
+        <a class="btn btn-ghost" href="#servicios">Qué puedo hacer por su operación</a>
+      </div>
+      <div class="hero-facts">
+        <div class="fact"><b>VICIdial + Asterisk</b><span>Especialidad: adaptar la plataforma, no reemplazarla</span></div>
+        <div class="fact"><b>On-premise y nube</b><span>Despliegue local o en Azure / AWS, según la operación</span></div>
+        <div class="fact"><b>Base común</b><span>Una sola base; los parámetros cambian por operación</span></div>
+        <div class="fact"><b>Todas las operaciones</b><span>Ventas, soporte, cobranza y más, sobre la misma base</span></div>
+      </div>
+    </div>
+
+    <div class="console" aria-label="Vista previa de la pantalla de agente modernizada">
+      <div class="console-bar">
+        <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="console-title">agente · pantalla modernizada</span>
+        <span class="live-pill">● EN LÍNEA</span>
+      </div>
+      <div class="console-body">
+        <div class="agent-row">
+          <div class="avatar" aria-hidden="true">A1</div>
+          <div>
+            <h3>Agente 101 — Campaña Ventas</h3>
+            <p>Cliente en línea · datos del CRM visibles sin cambiar de pantalla</p>
+          </div>
+          <div class="call-state"><b>04:32</b><span>En llamada</span></div>
+        </div>
+        <div class="console-actions" aria-hidden="true">
+          <span>Pausar</span><span>Transferir</span><span>Conferencia</span><span class="hot">Colgar</span>
+        </div>
+        <div class="ai-box">
+          <div class="ai-head"><b>Análisis de IA de la llamada</b><span class="ai-score">Sentimiento 82%</span></div>
+          <p>Resumen automático, intención detectada y siguiente acción sugerida al terminar la llamada — sin escuchar la grabación completa.</p>
+          <div class="wave" aria-hidden="true">
+            <i style="height:35%"></i><i style="height:60%"></i><i style="height:45%"></i><i style="height:80%"></i><i style="height:55%"></i><i style="height:95%"></i><i style="height:70%"></i><i style="height:40%"></i><i style="height:85%"></i><i style="height:62%"></i><i style="height:48%"></i><i style="height:75%"></i><i style="height:52%"></i><i style="height:88%"></i><i style="height:38%"></i><i style="height:66%"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- PROBLEMA -->
+  <section id="problema">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>El problema que ya conoce su operación</h2>
+        <p>Si su empresa trabaja con VICIdial o con Asterisk puro, probablemente convive con esto todos los días. No es falta de plataforma: es una plataforma que se quedó atrás.</p>
+      </div>
+      <div class="pain-grid">
+        <article class="pain">
+          <span class="pain-num">01</span>
+          <div>
+            <h3>Interfaz de otra época</h3>
+            <p>La pantalla del agente y del administrador es funcional, pero antigua, densa y difícil de aprender. Cada agente nuevo tarda más en ser productivo y comete más errores.</p>
+          </div>
+        </article>
+        <article class="pain">
+          <span class="pain-num">02</span>
+          <div>
+            <h3>Atorados en versiones viejas de Asterisk</h3>
+            <p>Muchas instalaciones siguen en ramas antiguas porque actualizar da miedo: si se rompe la telefonía, se detiene la operación. El problema tiene solución por capas, sin empezar de cero.</p>
+          </div>
+        </article>
+        <article class="pain">
+          <span class="pain-num">03</span>
+          <div>
+            <h3>Supervisión a ciegas</h3>
+            <p>Los reportes nativos no responden en segundos lo que un supervisor necesita: quién está en llamada, qué campaña se cae y dónde se está perdiendo tiempo.</p>
+          </div>
+        </article>
+        <article class="pain">
+          <span class="pain-num">04</span>
+          <div>
+            <h3>Grabaciones que nadie escucha</h3>
+            <p>Se graba todo y se analiza casi nada. Sin transcripción ni análisis automático, la calidad se revisa a mano, llamada por llamada, y la mayoría nunca se revisa.</p>
+          </div>
+        </article>
+      </div>
+      <div class="pain-answer">
+        <h3>Mi propuesta: modernizar por capas, sin tirar lo que funciona</h3>
+        <p>El núcleo de VICIdial y Asterisk se mantiene — es software libre probado en producción. Lo que cambia es todo lo que la gente toca a diario: <strong>una interfaz moderna encima, un puente (bridge) que conecta la plataforma con aplicaciones actuales, dashboards en tiempo real, IA sobre las grabaciones e integración con el CRM</strong>. La operación no se detiene y no se empieza de cero.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASO / DEMO -->
+  <section id="caso">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Caso principal: VICIdial modernizado</h2>
+        <p>Una demo funcional que muestra cómo se ve la plataforma adaptada: pantalla de agente renovada, dashboard de supervisor en tiempo real y análisis de IA dentro de la aplicación. Cambie el perfil de operación y vea cómo la misma base se comporta distinto en Ventas y en Soporte.</p>
+      </div>
+
+      <div class="dash-shell">
+        <div class="dash-toolbar">
+          <div class="t-left">
+            <h3>Dashboard de supervisor</h3>
+            <span class="mode-badge">MODO SIMULADO · DEMO</span>
+          </div>
+          <div class="seg" role="group" aria-label="Perfil de operación">
+            <button type="button" id="btn-ventas" aria-pressed="true">Ventas</button>
+            <button type="button" id="btn-soporte" aria-pressed="false">Soporte</button>
+          </div>
+        </div>
+        <div class="dash-body">
+          <div class="kpis">
+            <div class="kpi"><span id="kpi1-label">Llamadas hoy</span><b id="kpi1">1,284</b><small class="up" id="kpi1-delta">▲ 12% vs. ayer</small></div>
+            <div class="kpi"><span id="kpi2-label">Agentes en llamada</span><b id="kpi2">18 / 24</b><small id="kpi2-delta">75% de ocupación</small></div>
+            <div class="kpi"><span id="kpi3-label">Conversión</span><b id="kpi3">9.4%</b><small class="up" id="kpi3-delta">▲ 1.8 pts esta semana</small></div>
+            <div class="kpi"><span id="kpi4-label">Tiempo medio</span><b id="kpi4">4:12</b><small id="kpi4-delta">Dentro del objetivo</small></div>
+          </div>
+
+          <div class="dash-cols">
+            <div class="panel">
+              <h4 id="bars-title">Resultados por campaña <span>· hoy</span></h4>
+              <div id="bars"></div>
+            </div>
+            <div class="panel">
+              <h4>Agentes ahora mismo</h4>
+              <table class="agent-table">
+                <thead><tr><th>Agente</th><th>Estado</th><th id="th-metric">Ventas</th></tr></thead>
+                <tbody id="agents"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="ai-insight">
+            <span class="spark" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>
+            </span>
+            <div>
+              <h4>IA sobre grabaciones — hallazgo del día</h4>
+              <p id="ai-text">De 312 llamadas analizadas, el 23% menciona a un competidor. Las llamadas donde el agente ofrece la comparativa antes del minuto 2 convierten el doble.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="dash-note">Datos de demostración generados para la demo en modo simulado. En una implementación real, el bridge se conecta a su VICIdial / Asterisk y el dashboard lee su operación en vivo.</p>
+
+      <div class="svc-list" style="margin-top:22px">
+        <article class="svc">
+          <h3><span class="n">A</span> Pantalla de agente renovada</h3>
+          <p>La misma lógica de VICIdial, con una interfaz actual: datos del cliente y del CRM en la misma pantalla, disposiciones claras y menos clics por llamada.</p>
+        </article>
+        <article class="svc">
+          <h3><span class="n">B</span> Bridge de integración</h3>
+          <p>Una capa intermedia (FastAPI / Node) que habla con VICIdial y Asterisk por sus APIs y eventos, y expone todo de forma segura a las aplicaciones modernas.</p>
+        </article>
+        <article class="svc">
+          <h3><span class="n">C</span> Dashboard de supervisor</h3>
+          <p>KPIs y estado de agentes en tiempo real, con perfiles por tipo de operación: lo que importa en Ventas no es lo mismo que en Soporte, y la base lo parametriza.</p>
+        </article>
+        <article class="svc">
+          <h3><span class="n">D</span> IA dentro de la aplicación</h3>
+          <p>Transcripción y análisis de grabaciones sin salir de la plataforma: resumen, sentimiento, intención y alertas de calidad para supervisión.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Lo que ofrezco a su empresa</h2>
+        <p>Esto es lo que puedo hacer si me contratan: desde el análisis de lo que ya tienen hasta dejar la adaptación corriendo en producción, con configuración incluida.</p>
+      </div>
+      <div class="svc-list">
+        <article class="svc">
+          <h3><span class="n">01</span> Análisis de su instalación actual</h3>
+          <p>Reviso su VICIdial o Asterisk puro tal como está: versiones, configuración, campañas, reportes y cuellos de botella. El resultado es un diagnóstico claro de qué se puede modernizar, en qué orden y con qué riesgo.</p>
+          <ul><li>Diagnóstico técnico</li><li>Mapa de riesgos</li><li>Plan por fases</li></ul>
+        </article>
+        <article class="svc">
+          <h3><span class="n">02</span> Modernización de interfaces</h3>
+          <p>Nueva interfaz de agente y de administración sobre su misma plataforma: más rápida de aprender, pensada para el flujo real de cada operación y sin reentrenar a todo el centro desde cero.</p>
+          <ul><li>Pantalla de agente</li><li>Panel de administración</li><li>Diseño por operación</li></ul>
+        </article>
+        <article class="svc">
+          <h3><span class="n">03</span> Dashboards y supervisión</h3>
+          <p>Tableros en tiempo real para supervisores y dirección: ocupación, niveles de servicio, resultados por campaña y alertas cuando algo se desvía.</p>
+          <ul><li>Tiempo real</li><li>KPIs por operación</li><li>Alertas</li></ul>
+        </article>
+        <article class="svc">
+          <h3><span class="n">04</span> IA aplicada a las llamadas</h3>
+          <p>Análisis automático de grabaciones dentro de la propia aplicación: transcripción, resumen, sentimiento, detección de temas y apoyo a la evaluación de calidad.</p>
+          <ul><li>Transcripción</li><li>Resumen y sentimiento</li><li>Calidad asistida</li></ul>
+        </article>
+        <article class="svc">
+          <h3><span class="n">05</span> Integración con su CRM</h3>
+          <p>La llamada deja de vivir aislada: datos del cliente al contestar, registro automático de la interacción y disposiciones sincronizadas con el CRM que ya usan.</p>
+          <ul><li>Screen-pop</li><li>Registro automático</li><li>Sincronización</li></ul>
+        </article>
+        <article class="svc">
+          <h3><span class="n">06</span> Implementación y configuración</h3>
+          <p>Si el proyecto se da, lo llevo a producción: instalación, configuración de campañas y usuarios, parametrización por operación y puesta en marcha, on-premise o en la nube.</p>
+          <ul><li>On-premise</li><li>Azure / AWS</li><li>Puesta en producción</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARQUITECTURA -->
+  <section id="arquitectura">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Arquitectura: una base común, parámetros por operación</h2>
+        <p>La decisión central del proyecto: no construir una solución por cliente, sino una base única y sólida. Lo que cambia entre una operación de ventas, una de soporte o una de cobranza son los parámetros, no el código.</p>
+      </div>
+      <div class="arch">
+        <div class="layer base">
+          <span class="tag">Capa 1 · Núcleo libre</span>
+          <h3>VICIdial + Asterisk</h3>
+          <p>La telefonía y la lógica de campañas quedan en el software libre original, probado y en producción. No se reescribe el núcleo.</p>
+        </div>
+        <div class="layer">
+          <span class="tag">Capa 2 · Bridge</span>
+          <h3>API intermedia</h3>
+          <p>Servicio en FastAPI / Node que se comunica con la plataforma por sus interfaces y eventos, y traduce todo a una API moderna y segura.</p>
+        </div>
+        <div class="layer">
+          <span class="tag">Capa 3 · Aplicaciones</span>
+          <h3>Interfaz moderna</h3>
+          <p>Aplicación web en React + TypeScript: pantalla de agente, administración y dashboards, con perfiles configurables por operación.</p>
+        </div>
+        <div class="layer">
+          <span class="tag">Capa 4 · Inteligencia</span>
+          <h3>IA + CRM</h3>
+          <p>Análisis de grabaciones y conexión con el CRM sobre la misma base: cada operación activa los módulos que necesita.</p>
+        </div>
+      </div>
+      <p class="arch-note"><strong>¿Y lo de estar atorados en Asterisk antiguo?</strong> Se resuelve modernizando por capas: primero se desacopla la interfaz y los servicios con el bridge, y con ese colchón la actualización del núcleo deja de ser un salto al vacío. No hace falta empezar de cero ni detener la operación.</p>
+      <div class="deploy">
+        <div><b>On-premise</b><p>En los servidores de la empresa, para operaciones que deben mantener la telefonía dentro de su red.</p></div>
+        <div><b>Nube — Azure</b><p>Despliegue en Azure cuando la operación ya vive en el ecosistema Microsoft o lo prefiere por política interna.</p></div>
+        <div><b>Nube — AWS</b><p>Despliegue en AWS cuando conviene por costos, región o infraestructura existente. La elección se hace por operación.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section id="proceso">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Cómo avanza el proyecto</h2>
+        <p>El trabajo está organizado por fases. La primera ya existe y se puede mostrar; las siguientes se ejecutan sobre la misma base cuando la operación lo requiere.</p>
+      </div>
+      <div class="phases">
+        <div class="phase">
+          <span class="p-tag">FASE 1</span>
+          <div>
+            <h3>Demo funcional en modo simulado</h3>
+            <p>Pantalla de agente, dashboard de supervisor con perfiles de Ventas y Soporte, y análisis de IA dentro de la aplicación — todo sobre la arquitectura propuesta, listo para mostrar.</p>
+          </div>
+          <span class="state done">Realizada</span>
+        </div>
+        <div class="phase">
+          <span class="p-tag">FASE 2</span>
+          <div>
+            <h3>Conexión con una instalación real</h3>
+            <p>El bridge pasa de datos simulados a leer una instalación real de VICIdial / Asterisk: agentes, campañas y llamadas en vivo para validar la base con datos de producción.</p>
+          </div>
+          <span class="state next">Siguiente</span>
+        </div>
+        <div class="phase">
+          <span class="p-tag">FASE 3</span>
+          <div>
+            <h3>Interfaz completa e integración con CRM</h3>
+            <p>Administración completa desde la interfaz moderna y conexión bidireccional con el CRM de la operación: screen-pop, registro y disposiciones sincronizadas.</p>
+          </div>
+          <span class="state plan">Planificada</span>
+        </div>
+        <div class="phase">
+          <span class="p-tag">FASE 4</span>
+          <div>
+            <h3>IA en producción y despliegue por operación</h3>
+            <p>Análisis de grabaciones corriendo sobre el volumen real, parametrización completa por operación y despliegue on-premise o en la nube elegida.</p>
+          </div>
+          <span class="state plan">Planificada</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HABILIDADES + SOBRE MÍ -->
+  <section id="sobre-mi">
+    <div class="wrap two-col">
+      <div>
+        <div class="sec-head" style="margin-bottom:20px">
+          <h2>Habilidades y stack</h2>
+          <p>Las herramientas con las que construyo la adaptación.</p>
+        </div>
+        <div class="skill-group">
+          <h3>Plataforma de telefonía</h3>
+          <div class="chips"><span>VICIdial</span><span>Asterisk</span><span>VoIP / SIP</span><span>Configuración de campañas</span><span>Administración de agentes</span></div>
+        </div>
+        <div class="skill-group">
+          <h3>Desarrollo</h3>
+          <div class="chips"><span>React</span><span>TypeScript</span><span>FastAPI</span><span>Node.js</span><span>APIs REST</span><span>Dashboards en tiempo real</span></div>
+        </div>
+        <div class="skill-group">
+          <h3>Datos e IA</h3>
+          <div class="chips"><span>Transcripción de llamadas</span><span>Análisis de sentimiento</span><span>Resúmenes automáticos</span><span>Integración con CRM</span></div>
+        </div>
+        <div class="skill-group">
+          <h3>Despliegue</h3>
+          <div class="chips"><span>On-premise</span><span>Microsoft Azure</span><span>AWS</span><span>Linux</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="sec-head" style="margin-bottom:20px">
+          <h2>Sobre mí</h2>
+        </div>
+        <div class="about-card">
+          <p>Soy <strong>Neftali Hernandez Lozano</strong> y me especializo en algo concreto: tomar plataformas de telefonía de software libre que las empresas ya usan — <strong>VICIdial y Asterisk</strong> — y llevarlas a la altura de lo que una operación actual necesita.</p>
+          <p>Mi enfoque no es vender un reemplazo, sino <strong>adaptar, configurar y modernizar lo existente</strong>: entiendo la plataforma por dentro, construyo sobre ella con tecnología actual y dejo cada operación parametrizada según sus requerimientos, no con una solución genérica.</p>
+          <p>Busco integrarme a una empresa que trabaje con VICIdial o Asterisk puro y quiera modernizar su operación. Lo que ve en esta página — la demo, la arquitectura y el plan por fases — es exactamente el trabajo que haría ya dentro: <strong>implementación y adaptación reales, no solo una propuesta en papel</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LICENCIAS -->
+  <section id="licencias">
+    <div class="wrap">
+      <div class="lic">
+        <h2>Respeto total a las licencias de software libre</h2>
+        <p>Este proyecto se construye sobre software libre y respeta sus derechos y licencias sin excepción. Mi trabajo es la <strong>adaptación, modernización, integración y configuración</strong> que se desarrolla encima; el código original sigue siendo de sus autores y de su comunidad, y así se atribuye siempre. No presento como propio el código de terceros.</p>
+        <div class="lic-grid">
+          <div class="lic-item">
+            <b>VICIdial</b>
+            <span class="mono">Licencia AGPLv2</span>
+            <p>Suite de centro de contacto de código abierto. Se utiliza y adapta respetando los términos de la GNU Affero General Public License v2, con su atribución correspondiente.</p>
+          </div>
+          <div class="lic-item">
+            <b>Asterisk</b>
+            <span class="mono">Licencia GPL</span>
+            <p>Plataforma de telefonía de código abierto. Se utiliza y adapta respetando los términos de la GNU General Public License, con su atribución correspondiente.</p>
+          </div>
+        </div>
+        <p style="margin-top:16px">Las adaptaciones que se distribuyan cumplirán las obligaciones de las licencias aplicables, incluyendo la disponibilidad del código correspondiente cuando la licencia lo exige.</p>
+      </div>
+
+      <div class="closing" style="margin-top:22px">
+        <h2>¿Su operación trabaja con VICIdial o Asterisk puro?</h2>
+        <p>Entonces esta demo le habla directamente: la misma plataforma que ya tiene, con la interfaz, los dashboards y la IA que hoy le faltan. Estoy disponible para integrarme a su equipo y llevar la modernización de la propuesta a la producción.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Neftali Hernandez Lozano — Portafolio profesional</span>
+    <span>VICIdial bajo AGPLv2 · Asterisk bajo GPL · Atribución a sus autores y comunidades</span>
+  </div>
+</footer>
+
+<script>
+  var profiles = {
+    ventas: {
+      kpis: [
+        { label: "Llamadas hoy", value: "1,284", delta: "▲ 12% vs. ayer", cls: "up" },
+        { label: "Agentes en llamada", value: "18 / 24", delta: "75% de ocupación", cls: "" },
+        { label: "Conversión", value: "9.4%", delta: "▲ 1.8 pts esta semana", cls: "up" },
+        { label: "Tiempo medio", value: "4:12", delta: "Dentro del objetivo", cls: "" }
+      ],
+      barsTitle: "Resultados por campaña",
+      bars: [
+        { label: "Outbound MX", pct: 82, val: "312" },
+        { label: "Outbound LATAM", pct: 64, val: "241" },
+        { label: "Renovaciones", pct: 71, val: "198" },
+        { label: "Win-back", pct: 43, val: "117" }
+      ],
+      metricHead: "Ventas",
+      agents: [
+        { name: "Agente 101", status: "En llamada", cls: "st-call", metric: "14" },
+        { name: "Agente 107", status: "En llamada", cls: "st-call", metric: "12" },
+        { name: "Agente 112", status: "Cierre / wrap-up", cls: "st-wrap", metric: "11" },
+        { name: "Agente 118", status: "Pausa", cls: "st-pause", metric: "9" }
+      ],
+      ai: "De 312 llamadas analizadas, el 23% menciona a un competidor. Las llamadas donde el agente ofrece la comparativa antes del minuto 2 convierten el doble."
+    },
+    soporte: {
+      kpis: [
+        { label: "Tickets / llamadas hoy", value: "864", delta: "▲ 6% vs. ayer", cls: "up" },
+        { label: "Agentes en llamada", value: "15 / 20", delta: "75% de ocupación", cls: "" },
+        { label: "Resolución 1ª llamada", value: "78%", delta: "▲ 3 pts esta semana", cls: "up" },
+        { label: "Tiempo medio", value: "6:48", delta: "Sobre el objetivo (6:00)", cls: "down" }
+      ],
+      barsTitle: "Casos por tipo de incidencia",
+      bars: [
+        { label: "Conectividad", pct: 76, val: "204" },
+        { label: "Facturación", pct: 58, val: "156" },
+        { label: "Configuración", pct: 49, val: "131" },
+        { label: "Garantías", pct: 31, val: "84" }
+      ],
+      metricHead: "Resueltos",
+      agents: [
+        { name: "Agente 204", status: "En llamada", cls: "st-call", metric: "21" },
+        { name: "Agente 209", status: "En llamada", cls: "st-call", metric: "19" },
+        { name: "Agente 215", status: "Cierre / wrap-up", cls: "st-wrap", metric: "17" },
+        { name: "Agente 221", status: "Pausa", cls: "st-pause", metric: "15" }
+      ],
+      ai: "De 428 llamadas analizadas, el tema dominante es conectividad tras la última actualización. La IA detecta frustración alta en el 11% y sugiere escalar esos casos a nivel 2 de forma proactiva."
+    }
+  };
+
+  function renderProfile(key){
+    var p = profiles[key];
+    for (var i = 0; i < 4; i++){
+      document.getElementById("kpi" + (i+1) + "-label").textContent = p.kpis[i].label;
+      document.getElementById("kpi" + (i+1)).textContent = p.kpis[i].value;
+      var d = document.getElementById("kpi" + (i+1) + "-delta");
+      d.textContent = p.kpis[i].delta;
+      d.className = p.kpis[i].cls;
+    }
+    document.getElementById("bars-title").innerHTML = p.barsTitle + ' <span>· hoy</span>';
+    var barsHtml = "";
+    p.bars.forEach(function(b){
+      barsHtml += '<div class="bar-row"><span class="lbl">' + b.label + '</span>' +
+        '<span class="bar-track"><span class="bar-fill" style="display:block;width:' + b.pct + '%"></span></span>' +
+        '<span class="val">' + b.val + '</span></div>';
+    });
+    document.getElementById("bars").innerHTML = barsHtml;
+    document.getElementById("th-metric").textContent = p.metricHead;
+    var rows = "";
+    p.agents.forEach(function(a){
+      rows += '<tr><td><strong>' + a.name + '</strong></td>' +
+        '<td><span class="status ' + a.cls + '"><i></i>' + a.status + '</span></td>' +
+        '<td class="mono">' + a.metric + '</td></tr>';
+    });
+    document.getElementById("agents").innerHTML = rows;
+    document.getElementById("ai-text").textContent = p.ai;
+    document.getElementById("btn-ventas").setAttribute("aria-pressed", key === "ventas" ? "true" : "false");
+    document.getElementById("btn-soporte").setAttribute("aria-pressed", key === "soporte" ? "true" : "false");
+  }
+
+  document.getElementById("btn-ventas").addEventListener("click", function(){ renderProfile("ventas"); });
+  document.getElementById("btn-soporte").addEventListener("click", function(){ renderProfile("soporte"); });
+  renderProfile("ventas");
+</script>
+</body>
+</html>
