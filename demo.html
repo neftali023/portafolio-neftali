@@ -264,6 +264,57 @@
   footer{max-width:1240px;margin:0 auto;padding:0 16px 34px;color:var(--ink3);font-size:12.5px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .stackline{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
   .stackline span{font-family:"IBM Plex Mono",monospace;font-size:12px;background:var(--surface2);border:1px solid var(--line);padding:4px 10px;border-radius:8px}
+
+  /* ---------- Monitoreo en vivo ---------- */
+  .live-badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--coral);background:var(--coral-soft);border:1px solid var(--coral);border-radius:999px;padding:5px 11px}
+  .live-badge i{width:8px;height:8px;border-radius:50%;background:var(--coral);display:block;animation:pulse 1.4s infinite}
+  .monitor-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+  @media(max-width:1020px){.monitor-kpis{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:480px){.monitor-kpis{grid-template-columns:1fr 1fr}}
+  .queue-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:900px){.queue-grid{grid-template-columns:1fr}}
+  .queue-card{border:1px solid var(--line);border-radius:12px;padding:14px 15px;background:var(--surface2)}
+  .queue-card b{font-size:14.5px;display:block}
+  .queue-card .qmeta{font-size:12.5px;color:var(--ink2);margin-top:2px}
+  .queue-bar{height:8px;background:var(--surface3);border-radius:99px;overflow:hidden;margin:10px 0 8px}
+  .queue-bar i{display:block;height:100%;background:var(--teal);border-radius:99px}
+  .queue-bar i.warn{background:var(--amber)} .queue-bar i.bad{background:var(--coral)}
+  .queue-nums{display:flex;gap:14px;font-size:12.5px;font-weight:700}
+  .queue-nums span b{font-size:16px;display:block}
+  .infra-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:560px){.infra-grid{grid-template-columns:1fr}}
+  .infra{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--line);border-radius:11px;padding:11px 12px;background:var(--surface)}
+  .infra .dot{width:11px;height:11px;border-radius:50%;margin-top:4px;flex:none}
+  .infra .dot.ok{background:var(--green)} .infra .dot.warn{background:var(--amber)} .infra .dot.bad{background:var(--coral)}
+  .infra b{font-size:13.5px;display:block}
+  .infra span{font-size:12.5px;color:var(--ink2);display:block;line-height:1.4}
+  .event-feed{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0;font-size:13.5px;max-height:340px;overflow:auto}
+  .event-feed li{display:flex;gap:11px;padding:9px 0;border-bottom:1px dashed var(--line)}
+  .event-feed li:last-child{border-bottom:0}
+  .event-feed .etime{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink3);flex:none;padding-top:1px;min-width:52px}
+  .event-feed .etag{font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:2px 7px;flex:none;height:fit-content;margin-top:1px}
+  .etag.call{background:var(--blue-soft);color:var(--blue)} .etag.queue{background:var(--amber-soft);color:var(--amber)} .etag.sys{background:var(--teal-soft);color:var(--teal-dark)} .etag.alert{background:var(--coral-soft);color:var(--coral)}
+  table.livecalls{width:100%;border-collapse:collapse;font-size:13.5px}
+  table.livecalls th{text-align:left;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);padding:8px 10px;border-bottom:2px solid var(--line)}
+  table.livecalls td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+  .mon-actions{display:flex;gap:6px;flex-wrap:wrap}
+  .mon-actions button{border:1px solid var(--line2);background:var(--surface);border-radius:999px;padding:6px 11px;font-size:12.5px;font-weight:700;min-height:36px;color:var(--ink)}
+  .mon-actions button:hover{border-color:var(--teal);color:var(--teal-dark)}
+  .mon-actions button.active{background:var(--teal);border-color:var(--teal);color:#fff}
+  .mon-toast{font-size:13px;background:var(--blue-soft);color:var(--blue);border-radius:10px;padding:10px 12px;font-weight:600;display:none;margin-top:12px}
+  .mon-toast.show{display:block}
+  .spark{display:flex;gap:3px;align-items:flex-end;height:64px;margin-top:6px}
+  .spark i{flex:1;background:var(--teal);border-radius:3px 3px 1px 1px;min-height:4px;opacity:.9}
+  .spark i:last-child{background:var(--amber)}
+  @media(max-width:680px){
+    table.livecalls thead{display:none}
+    table.livecalls,table.livecalls tbody,table.livecalls tr,table.livecalls td{display:block;width:100%}
+    table.livecalls tr{border:1px solid var(--line);border-radius:10px;margin-bottom:10px;padding:6px 4px}
+    table.livecalls td{border-bottom:0;padding:5px 10px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+    table.livecalls td::before{content:attr(data-l);font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3)}
+    table.livecalls td.actions-cell{justify-content:flex-start}
+    table.livecalls td.actions-cell::before{display:none}
+  }
 </style>
 </head>
 <body>
@@ -297,7 +348,8 @@
 <!-- ======================= ROLE TABS ======================= -->
 <nav class="tabs" role="tablist" aria-label="Vistas por rol">
   <button type="button" role="tab" aria-selected="true" id="tab-agente" onclick="setView('agente')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>Agente</button>
-  <button type="button" role="tab" aria-selected="false" id="tab-supervisor" onclick="setView('supervisor')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>Supervisor</button>
+  <button type="button" role="tab" aria-selected="false" id="tab-supervisor" onclick="setView('supervisor')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>Supervisión</button>
+  <button type="button" role="tab" aria-selected="false" id="tab-monitoreo" onclick="setView('monitoreo')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Monitoreo</button>
   <button type="button" role="tab" aria-selected="false" id="tab-ia" onclick="setView('ia')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>IA y grabaciones</button>
   <button type="button" role="tab" aria-selected="false" id="tab-config" onclick="setView('config')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Configuración</button>
 </nav>
@@ -307,7 +359,7 @@
 <!-- ======================= VIEW: AGENTE ======================= -->
 <section class="view active" id="view-agente" role="tabpanel" aria-labelledby="tab-agente">
   <div class="intro">
-    <h1 id="agentTitle">Pantalla del agente</h1>
+    <h1 id="agentTitle">Interfaz de agente</h1>
     <p id="agentIntro">La misma pantalla se dibuja desde el perfil de la operación: guion, campos del lead, disposiciones y reglas de IA cambian sin tocar código.</p>
     <span class="swap-note">↔ Cambia el perfil arriba y observa cómo se reconfigura todo.</span>
   </div>
@@ -383,7 +435,7 @@
 <!-- ======================= VIEW: SUPERVISOR ======================= -->
 <section class="view" id="view-supervisor" role="tabpanel" aria-labelledby="tab-supervisor">
   <div class="intro">
-    <h1>Dashboard del supervisor</h1>
+    <h1>Interfaz de supervisión</h1>
     <p id="dashIntro">Indicadores de la campaña en tiempo real, alimentados por el puente desde VICIdial. Las métricas objetivo cambian con el perfil de la operación.</p>
   </div>
 
@@ -414,6 +466,52 @@
     <div class="panel" style="grid-column:1/-1">
       <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Alertas operativas</h2>
       <ul class="alerts" id="alertsList"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= VIEW: MONITOREO ======================= -->
+<section class="view" id="view-monitoreo" role="tabpanel" aria-labelledby="tab-monitoreo">
+  <div class="intro" style="align-items:center">
+    <h1>Interfaz de monitoreo</h1>
+    <p>Wallboard operativo en tiempo real: colas, llamadas activas, troncales e infraestructura. Desde aquí el supervisor escucha, susurra o interviene sin que el agente cambie de pantalla.</p>
+    <span class="live-badge"><i></i>En vivo · <span id="monClock" class="mono">--:--:--</span></span>
+  </div>
+
+  <div class="monitor-kpis" id="monKpis"></div>
+
+  <div class="panel" style="margin-bottom:14px">
+    <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Tráfico de llamadas · últimos 30 minutos <span style="text-transform:none;letter-spacing:0;font-weight:600" id="monTrafficLabel">· se actualiza cada 4 s en esta demo</span></h2>
+    <div class="spark" id="monSpark" role="img" aria-label="Mini gráfico de tráfico de llamadas en los últimos 30 minutos"></div>
+    <div style="display:flex;justify-content:space-between;font-size:11.5px;color:var(--ink3);font-weight:600;margin-top:6px"><span>Hace 30 min</span><span>Ahora</span></div>
+  </div>
+
+  <div class="panel" style="margin-bottom:14px">
+    <h2>Colas y campañas activas</h2>
+    <div class="queue-grid" id="monQueues"></div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:14px">
+    <div class="panel" style="grid-column:1/-1">
+      <h2>Llamadas activas ahora · intervención del supervisor</h2>
+      <table class="livecalls">
+        <thead><tr><th>Agente</th><th>Cliente / Lead</th><th>Cola</th><th>Duración</th><th>Sentimiento IA</th><th>Acciones</th></tr></thead>
+        <tbody id="monLiveBody"></tbody>
+      </table>
+      <div class="mon-toast" id="monToast" role="status"></div>
+      <p style="font-size:12.5px;color:var(--ink3);margin:10px 0 0">Escuchar = monitoreo silencioso (ChanSpy) · Susurrar = solo el agente te oye · Intervenir = entras a la llamada con cliente y agente. En producción estas acciones van por AMI/ARI vía el puente, nunca directo a Asterisk.</p>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="panel">
+      <h2>Salud de la infraestructura</h2>
+      <div class="infra-grid" id="monInfra"></div>
+      <div class="stackline"><span id="monEnvEcho">Entorno: On-premise</span><span>Asterisk 20 LTS</span><span>ConfBridge · PJSIP</span><span>WebSockets</span></div>
+    </div>
+    <div class="panel">
+      <h2>Eventos en vivo</h2>
+      <ul class="event-feed" id="monEvents" aria-live="polite"></ul>
     </div>
   </div>
 </section>
@@ -519,8 +617,9 @@
     <div class="panel">
       <h2>Qué incluye esta demo (mínimo enviable)</h2>
       <div class="req-grid" style="grid-template-columns:1fr">
-        <div class="req"><span class="st">Incluido</span><b>Pantalla de agente funcional</b><span>Llamada simulada con transcripción, guion, disposiciones y asistente IA en vivo.</span></div>
-        <div class="req"><span class="st">Incluido</span><b>Dashboard de supervisor</b><span>KPIs, llamadas por hora, disposiciones y agentes en vivo por operación.</span></div>
+        <div class="req"><span class="st">Incluido</span><b>Interfaz de agente</b><span>Llamada simulada con transcripción, guion, disposiciones y asistente IA en vivo.</span></div>
+        <div class="req"><span class="st">Incluido</span><b>Interfaz de supervisión</b><span>KPIs, llamadas por hora, disposiciones y agentes en vivo por operación.</span></div>
+        <div class="req"><span class="st">Incluido · Nuevo</span><b>Interfaz de monitoreo</b><span>Wallboard en vivo con colas, llamadas activas, escucha / susurro / intervención, salud de Asterisk, troncales, puente e IA, y feed de eventos.</span></div>
         <div class="req"><span class="st">Incluido</span><b>Dos perfiles de operación</b><span>Ventas outbound y soporte inbound sobre la misma base, para probar el modelo de perfiles.</span></div>
         <div class="req"><span class="st">Incluido</span><b>IA sobre una grabación</b><span>Resumen, sentimiento, QA automático y cumplimiento, con salida hacia el CRM.</span></div>
         <div class="req"><span class="st">No requerido aún</span><b>Servidor VICIdial, troncal SIP ni leads reales</b><span>La demo corre en modo simulado. La conexión real se hace en la siguiente fase, contra el puente.</span></div>
@@ -868,6 +967,80 @@ var RECORDINGS = {
   ]
 };
 
+/* ==================== DATA: monitoring ==================== */
+var MONITORING = {
+  ventas: {
+    kpis: [
+      {label:"En cola / marcando", id:"mkQueue", value:"42", sub:"Leads listos · ratio 2.5"},
+      {label:"Llamadas activas", id:"mkActive", value:"11", sub:"De 20 canales en uso"},
+      {label:"En espera (hold)", id:"mkHold", value:"2", sub:"Espera media 0:38"},
+      {label:"Abandono última hora", id:"mkAband", value:"2.8%", sub:"Límite 3% · vigilar"}
+    ],
+    queues: [
+      {name:"VENTAS_Q4_SALIENTES", meta:"Predictiva · ratio 2.5", waiting:42, active:8, agents:14, load:68},
+      {name:"CALLBACKS_VENTAS", meta:"Callbacks programados de hoy", waiting:9, active:2, agents:4, load:44},
+      {name:"CIERRES / SEGUNDA LÍNEA", meta:"Cerradores senior", waiting:3, active:1, agents:2, load:82}
+    ],
+    live: [
+      {agent:"Ana G. · 1042", client:"Distribuidora Loma, S.A.", queue:"VENTAS_Q4", dur:"03:24", durSec:204, sent:"Positivo", sentCls:"ok"},
+      {agent:"Carmen R. · 1044", client:"Taller Hermanos Paz", queue:"VENTAS_Q4", dur:"02:11", durSec:131, sent:"Neutral", sentCls:""},
+      {agent:"Sofía T. · 1046", client:"Papelería El Faro", queue:"CALLBACKS", dur:"01:47", durSec:107, sent:"Positivo", sentCls:"ok"},
+      {agent:"Luis M. · 1043", client:"Abarrotes El Centro", queue:"VENTAS_Q4", dur:"04:02", durSec:242, sent:"En riesgo", sentCls:"warn"}
+    ],
+    infra: [
+      {status:"ok", name:"Asterisk 20 · ConfBridge", detail:"Canales activos 11/60 · jitter 8 ms · sin pérdida"},
+      {status:"ok", name:"Puente API (FastAPI)", detail:"Latencia p95 84 ms · WebSockets: 23 clientes conectados"},
+      {status:"warn", name:"Troncal SIP principal", detail:"Uso 71% · CPS dentro de límite · vigilar hora pico 14:00"},
+      {status:"ok", name:"Grabaciones · MixMonitor", detail:"Grabando 11 llamadas · disco 46% · retención 90 días"},
+      {status:"ok", name:"Base de datos VICIdial", detail:"Réplica al día · 0 consultas lentas en 15 min"},
+      {status:"ok", name:"Capa de IA", detail:"Transcripción en vivo activa · cola de análisis: 0"}
+    ],
+    events: [
+      {time:"12:04", tag:"call", tagLabel:"Llamada", text:"<b>Ana G. (1042)</b> inició llamada con Distribuidora Loma — IA detecta intención de cierre."},
+      {time:"12:03", tag:"queue", tagLabel:"Cola", text:"<b>VENTAS_Q4:</b> la lista bajó a 340 leads marcables. Carga programada antes de las 18:00."},
+      {time:"12:01", tag:"sys", tagLabel:"Sistema", text:"<b>Puente API:</b> sincronización con CRM completada sin errores (128 registros)."},
+      {time:"11:58", tag:"alert", tagLabel:"Alerta", text:"<b>Abandono 2.8%</b> en la última hora, cerca del límite del 3% del perfil de ventas."},
+      {time:"11:55", tag:"call", tagLabel:"Llamada", text:"<b>Sofía T. (1046)</b> cerró venta — grabación enviada a análisis de QA automático."}
+    ],
+    spark: [22,28,35,30,42,48,44,52,58,50,62,70,66,74,68,80,76,84,78,72,80,86,82,90,84,88,92,86,90,94]
+  },
+  soporte: {
+    kpis: [
+      {label:"En cola de espera", id:"mkQueue", value:"7", sub:"Espera más larga 1:24"},
+      {label:"Llamadas activas", id:"mkActive", value:"9", sub:"N1: 7 · N2: 2"},
+      {label:"En espera (hold)", id:"mkHold", value:"1", sub:"Espera media 0:51"},
+      {label:"Nivel de servicio", id:"mkAband", value:"84% / 20 s", sub:"Meta 80% / 20 s · OK"}
+    ],
+    queues: [
+      {name:"SOPORTE_N1_ENTRANTES", meta:"Entrante IVR · skills N1", waiting:7, active:6, agents:9, load:74},
+      {name:"SOPORTE_N2_ESCALADOS", meta:"Segundo nivel · casos complejos", waiting:2, active:2, agents:3, load:58},
+      {name:"FACTURACIÓN (derivados)", meta:"Derivados desde soporte", waiting:1, active:1, agents:2, load:36}
+    ],
+    live: [
+      {agent:"Ana G. · 1042", client:"María Fernanda Ruiz · TK-90312", queue:"SOPORTE_N1", dur:"04:18", durSec:258, sent:"Aliviada", sentCls:"ok"},
+      {agent:"Paola V. · 2042", client:"Cliente #41876 · TK-90298", queue:"SOPORTE_N1", dur:"06:02", durSec:362, sent:"Frustrado", sentCls:"warn"},
+      {agent:"Jorge L. · 2041", client:"Cliente #55209 · Sin ticket previo", queue:"SOPORTE_N1", dur:"01:33", durSec:93, sent:"Neutral", sentCls:""},
+      {agent:"Marco A. · 2043", client:"Cliente #39011 · TK-90271", queue:"SOPORTE_N2", dur:"07:45", durSec:465, sent:"En riesgo", sentCls:"warn"}
+    ],
+    infra: [
+      {status:"ok", name:"Asterisk 20 · Colas con skills", detail:"Canales activos 9/40 · IVR operativo · jitter 6 ms"},
+      {status:"ok", name:"Puente API (FastAPI)", detail:"Latencia p95 71 ms · WebSockets: 16 clientes conectados"},
+      {status:"ok", name:"Troncal SIP principal", detail:"Uso 38% · sin saturación"},
+      {status:"warn", name:"Nodo zona Centro", detail:"Reportes de intermitencia concentrados: 31% de tickets de la hora. Revisión en curso."},
+      {status:"ok", name:"Grabaciones · MixMonitor", detail:"Grabando 9 llamadas · disco 46% · retención 90 días"},
+      {status:"ok", name:"Capa de IA", detail:"Árbol de diagnóstico activo · detección de escalación en vivo"}
+    ],
+    events: [
+      {time:"11:48", tag:"call", tagLabel:"Llamada", text:"<b>Ana G. (1042)</b> resolvió TK-90312 en N1 — causa raíz registrada por IA."},
+      {time:"11:44", tag:"alert", tagLabel:"Alerta", text:"<b>Zona Centro:</b> pico de tickets «sin servicio intermitente» (31% de la hora)."},
+      {time:"11:40", tag:"queue", tagLabel:"Cola", text:"<b>SOPORTE_N1:</b> espera máxima 1:24, dentro del SLA de nivel de servicio."},
+      {time:"11:36", tag:"sys", tagLabel:"Sistema", text:"<b>CRM:</b> 6 tickets con SLA &lt; 1 h ya tienen agente asignado."},
+      {time:"11:31", tag:"call", tagLabel:"Llamada", text:"<b>Marco A. (2043)</b> escaló caso a N2 con diagnóstico N1 adjunto por IA."}
+    ],
+    spark: [30,36,42,38,48,55,50,58,62,56,66,60,70,64,72,68,76,70,74,80,76,72,78,74,80,76,82,78,84,80]
+  }
+};
+
 /* ==================== STATE ==================== */
 var state = {
   profile: "ventas",
@@ -876,7 +1049,8 @@ var state = {
   inCall: false, paused: false, muted: false, hold: false,
   timerSec: 0, timerInt: null, lineInt: null, lineIdx: 0,
   scriptDone: 0, selectedDispo: null,
-  recIdx: 0, playing: false, playInt: null, playSec: 0
+  recIdx: 0, playing: false, playInt: null, playSec: 0,
+  monInt: null, monTick: 0
 };
 var DONUT_COLORS_FALLBACK = "#8a9a93";
 var ICONS = {
@@ -896,7 +1070,7 @@ function setProfile(key){
   state.selectedDispo = null; state.scriptDone = 0; state.recIdx = 0; state.playSec = 0;
   el("btn-ventas").setAttribute("aria-pressed", key==="ventas" ? "true":"false");
   el("btn-soporte").setAttribute("aria-pressed", key==="soporte" ? "true":"false");
-  renderAgent(); renderDashboard(); renderRecordings(); renderConfig();
+  renderAgent(); renderDashboard(); renderRecordings(); renderConfig(); renderMonitoring();
 }
 function renderAgent(){
   var p = P();
@@ -1167,22 +1341,105 @@ function pickDispo(i, btn){
   if(state.inCall) endCall(false);
 }
 
+/* ==================== MONITORING ==================== */
+function MON(){ return MONITORING[state.profile]; }
+function renderMonitoring(){
+  var m = MON();
+  el("monKpis").innerHTML = m.kpis.map(function(k){
+    return '<div class="kpi"><span>'+k.label+'</span><b class="mono" id="'+k.id+'">'+k.value+'</b><small class="up" style="color:var(--ink2)">'+k.sub+"</small></div>";
+  }).join("");
+  el("monSpark").innerHTML = m.spark.map(function(v){ return '<i style="height:'+v+'%"></i>'; }).join("");
+  el("monQueues").innerHTML = m.queues.map(function(q){
+    var cls = q.load >= 80 ? "bad" : (q.load >= 65 ? "warn" : "");
+    return '<div class="queue-card"><b>'+q.name+'</b><div class="qmeta">'+q.meta+'</div><div class="queue-bar"><i class="'+cls+'" style="width:'+q.load+'%"></i></div><div class="queue-nums"><span><b class="mono">'+q.waiting+'</b>En espera</span><span><b class="mono">'+q.active+'</b>Activas</span><span><b class="mono">'+q.agents+'</b>Agentes</span><span><b class="mono">'+q.load+'%</b>Carga</span></div></div>';
+  }).join("");
+  el("monLiveBody").innerHTML = m.live.map(function(c,i){
+    var pillCls = c.sentCls === "ok" ? "ready" : (c.sentCls === "warn" ? "pause" : "wrap");
+    return "<tr><td data-l='Agente'><b>"+c.agent+"</b></td><td data-l='Cliente'>"+c.client+"</td><td data-l='Cola' class='mono' style='font-size:12.5px'>"+c.queue+"</td><td data-l='Duración' class='mono mon-dur' data-sec='"+c.durSec+"'>"+c.dur+"</td><td data-l='Sentimiento IA'><span class='pill "+pillCls+"'>"+c.sent+"</span></td><td class='actions-cell'><div class='mon-actions'><button type='button' onclick='monAction(this,\"escuchar\",\""+c.agent+"\")'>Escuchar</button><button type='button' onclick='monAction(this,\"susurrar\",\""+c.agent+"\")'>Susurrar</button><button type='button' onclick='monAction(this,\"intervenir\",\""+c.agent+"\")'>Intervenir</button></div></td></tr>";
+  }).join("");
+  el("monInfra").innerHTML = m.infra.map(function(x){
+    return '<div class="infra"><span class="dot '+x.status+'"></span><div><b>'+x.name+"</b><span>"+x.detail+"</span></div></div>";
+  }).join("");
+  el("monEvents").innerHTML = m.events.map(function(e){
+    return '<li><span class="etime">'+e.time+'</span><span class="etag '+e.tag+'">'+e.tagLabel+"</span><span>"+e.text+"</span></li>";
+  }).join("");
+  var envEl = el("monEnvEcho"); if(envEl) envEl.textContent = "Entorno: "+(state.env === "On-premise" ? "On-premise" : "Cloud · "+state.env);
+  tickMonClock();
+}
+function tickMonClock(){
+  var d = new Date();
+  var hh = d.getHours(), mm = d.getMinutes(), ss = d.getSeconds();
+  var c = el("monClock"); if(c) c.textContent = (hh<10?"0":"")+hh+":"+(mm<10?"0":"")+mm+":"+(ss<10?"0":"")+ss;
+}
+function tickMonitoring(){
+  state.monTick++;
+  tickMonClock();
+  /* durations count up */
+  var durs = document.querySelectorAll("#view-monitoreo .mon-dur");
+  for(var i=0;i<durs.length;i++){
+    var s = parseInt(durs[i].getAttribute("data-sec"),10)+4;
+    durs[i].setAttribute("data-sec", s);
+    durs[i].textContent = fmt(s);
+  }
+  /* spark shifts */
+  var m = MON();
+  var next = Math.max(18, Math.min(96, m.spark[m.spark.length-1] + (Math.random()*16-8)));
+  m.spark.push(Math.round(next)); m.spark.shift();
+  var sparkEl = el("monSpark");
+  if(sparkEl) sparkEl.innerHTML = m.spark.map(function(v){ return '<i style="height:'+v+'%"></i>'; }).join("");
+  /* slight KPI drift on queue count */
+  if(state.monTick % 2 === 0){
+    var q = el("mkQueue");
+    if(q){
+      var base = state.profile === "ventas" ? 42 : 7;
+      var drift = Math.round(Math.sin(state.monTick/3)*3);
+      q.textContent = base + drift;
+    }
+  }
+}
+function startMonitoring(){
+  stopMonitoring();
+  tickMonClock();
+  state.monInt = setInterval(tickMonitoring, 4000);
+}
+function stopMonitoring(){
+  if(state.monInt) clearInterval(state.monInt);
+  state.monInt = null;
+}
+function monAction(btn, action, agent){
+  var row = btn.parentNode;
+  var btns = row.querySelectorAll("button");
+  for(var i=0;i<btns.length;i++) btns[i].classList.remove("active");
+  btn.classList.add("active");
+  var toast = el("monToast");
+  toast.className = "mon-toast show";
+  var msgs = {
+    escuchar: "Escuchando en silencio la llamada de <b>"+agent+"</b> (ChanSpy vía puente). El agente y el cliente no te oyen. La IA sigue transcribiendo en la vista de grabaciones.",
+    susurrar: "Susurro activo con <b>"+agent+"</b>: solo el agente te escucha. Úsalo para guiar el cierre o el diagnóstico sin interrumpir al cliente.",
+    intervenir: "Intervención activa en la llamada de <b>"+agent+"</b>: ahora hablas con agente y cliente (barge-in). Queda registrado en la grabación y en el evento de monitoreo."
+  };
+  toast.innerHTML = msgs[action];
+  setTimeout(function(){ toast.className = "mon-toast"; btn.classList.remove("active"); }, 6000);
+}
+
 /* ==================== VIEW / ENV ==================== */
 function setView(v){
   state.view = v;
-  ["agente","supervisor","ia","config"].forEach(function(k){
+  ["agente","supervisor","monitoreo","ia","config"].forEach(function(k){
     el("view-"+k).classList.toggle("active", k===v);
     el("tab-"+k).setAttribute("aria-selected", k===v ? "true":"false");
   });
+  if(v === "monitoreo"){ renderMonitoring(); startMonitoring(); } else { stopMonitoring(); }
   window.scrollTo({top:0, behavior:"smooth"});
 }
 function setEnv(v){
   state.env = v;
   el("envEcho").textContent = v === "On-premise" ? "On-premise" : "Cloud · "+v;
+  var me = el("monEnvEcho"); if(me) me.textContent = "Entorno: "+(v === "On-premise" ? "On-premise" : "Cloud · "+v);
 }
 
 /* ==================== INIT ==================== */
-renderAgent(); renderDashboard(); renderRecordings(); renderConfig();
+renderAgent(); renderDashboard(); renderRecordings(); renderConfig(); renderMonitoring();
 </script>
 </body>
 </html>
