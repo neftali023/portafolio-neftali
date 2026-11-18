@@ -1,28 +1,28 @@
-# Portafolio de Neftali Hernandez Lozano
+# Portfolio of Neftali Hernandez Lozano
 
-Portafolio de programación para empresas que usan VICIdial o Asterisk puro.
+Programming portfolio for companies using VICIdial or pure Asterisk.
 
-- **Portafolio:** `index.html`
-- **Demo VICIdial modernizado:** `demo.html` (modo simulado, sin servidor telefónico real)
+- **Portfolio:** `index.html`
+- **Modernized VICIdial demo:** `demo.html` (simulated mode, no real telephony server)
 
-## Qué muestra
+## What it shows
 
-- Modernización de la interfaz del agente y del administrador de VICIdial
-- Dashboard moderno por rol, con perfiles de operación configurables (Ventas / Soporte)
-- IA dentro de la aplicación: asistente en vivo, transcripción, resumen y QA
-- Integración con CRM
-- Base común para todas las operaciones, con parámetros por requerimientos
-- Despliegue híbrido on-premise y cloud (Azure o AWS, por operación)
+- Modernization of the VICIdial agent and admin interfaces
+- Modern dashboard by role, with configurable operation profiles (Sales / Support)
+- AI inside the application: live assistant, transcription, summary and QA
+- CRM integration
+- A common base for all operations, with parameters defined by requirements
+- Hybrid on-premise and cloud deployment (Azure or AWS, per operation)
 
-## Licencias y atribución
+## Licenses and attribution
 
-VICIdial y Asterisk son proyectos de sus autores originales.
+VICIdial and Asterisk are projects by their original authors.
 
 - VICIdial — AGPLv2
 - Asterisk — GPL
 
-El trabajo de Neftali Hernandez Lozano es la adaptación, modernización y configuración por encima de ellos, no reclamar su código como propio.
+The work of Neftali Hernandez Lozano is the adaptation, modernization and configuration built on top of them, not claiming their code as his own.
 
-## Publicación
+## Publishing
 
-Este repositorio está pensado para GitHub Pages: la página principal es `index.html` y la demo es `demo.html`.
+This repository is intended for GitHub Pages: the main page is `index.html` and the demo is `demo.html`.
